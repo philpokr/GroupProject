@@ -1,17 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using FinalProject.Models;
+using Microsoft.AspNetCore.Mvc;
 using GroupProject.Models;
 
-namespace FinalProject.Controllers;
+namespace GroupProject.Controllers;
 
 [ApiController]
 [Route("[controller]")]
 public class FavoriteSportController : ControllerBase
 {
     private readonly ILogger<FavoriteSportController> _logger;
-    private readonly FinalProjectContext _context;
+    private readonly ApplicationDbContext _context;
 
-    public FavoriteSportController(ILogger<FavoriteSportController> logger, FinalProjectContext context)
+    public FavoriteSportController(ILogger<FavoriteSportController> logger, ApplicationDbContext context)
 
     {
         _logger = logger;
@@ -23,7 +22,7 @@ public class FavoriteSportController : ControllerBase
     [ProducesResponseType(typeof(FavoriteSport), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(string), StatusCodes.Status404NotFound)]
     [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
-    public IActionResult GetBySalary(int? numPlay)
+    public IActionResult GetByNumPlay(int? numPlay)
     {
         if (numPlay == null || numPlay == 0) return Ok(_context.FavoriteSports?.ToList().Take(5));
         try
