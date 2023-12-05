@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using FinalProject.Models;
+using Microsoft.AspNetCore.Mvc;
 using GroupProject.Models;
 
 namespace FinalProject.Controllers;
@@ -8,10 +7,10 @@ namespace FinalProject.Controllers;
 [Route("[controller]")]
 public class DreamJobController : ControllerBase
 {
-    private readonly ILogger<CollegeStudentController> _logger;
-    private readonly FinalProjectContext _context;
+    private readonly ILogger<DreamJobController> _logger;
+    private readonly ApplicationDbContext _context;
 
-    public DreamJobController(ILogger<CollegeStudentController> logger, FinalProjectContext context)
+    public DreamJobController(ILogger<DreamJobController> logger, ApplicationDbContext context)
     {
         _logger = logger;
         _context = context;
@@ -24,7 +23,7 @@ public class DreamJobController : ControllerBase
     [ProducesResponseType(typeof(string), StatusCodes.Status500InternalServerError)]
     public IActionResult GetBySalary(int? Salary)
     {
-        if (Salary == null || Salary == 0) return Ok(_context.CollegeStudents?.ToList().Take(5));
+        if (Salary == null || Salary == 0) return Ok(_context.dreamJobs?.ToList().Take(5));
         try
         {
             var job = _context.dreamJobs.Find(Salary);
