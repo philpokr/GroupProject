@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using GroupProject.Models;
 
-namespace FinalProject.Controllers;
+namespace GroupProject.Controllers;
 
 [ApiController]
 [Route("[controller]")]
